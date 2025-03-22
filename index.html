@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Monster Survivors - Epic Survival Action Game | YiwuGame</title>
+    <meta name="description" content="Play Monster Survivors online! Fight endless waves of monsters, level up your character, and unlock powerful abilities in this thrilling survival action game. No download required.">
+    <link rel="canonical" href="https://yiwugame.online" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <style>
+        :root {
+            --apple-blue: #007AFF;
+            --apple-gray: #8E8E93;
+            --apple-green: #34C759;
+        }
+        .game-card {
+            transition: transform 0.3s ease;
+        }
+        .game-card:hover {
+            transform: translateY(-5px);
+        }
+        .rating-star {
+            color: #FFD700;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .float-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body, html {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+
+        .game-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        #gameFrame {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+
+        .fullscreen-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+        }
+
+        .fullscreen-btn:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        .fullscreen-btn svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        @media (orientation: portrait) {
+            .fullscreen-btn {
+                top: 10px;
+                right: 10px;
+                padding: 8px 16px;
+                font-size: 14px;
+            }
+        }
+
+        /* 处理 iOS Safari 的全屏问题 */
+        .ios-fullscreen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            background: #000;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-b from-gray-50 to-gray-100 text-gray-900">
+    <header class="bg-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <h1 class="text-5xl font-bold text-[#007AFF] mb-3 animate__animated animate__fadeInDown">Monster Survivors</h1>
+            <p class="text-xl text-gray-600 animate__animated animate__fadeIn animate__delay-1s">Survive endless waves of monsters, evolve your abilities, and become the ultimate warrior!</p>
+            <div class="mt-4 flex items-center space-x-4 animate__animated animate__fadeIn animate__delay-2s">
+                <div class="flex items-center">
+                    <span class="rating-star text-2xl">★★★★★</span>
+                    <span class="ml-2 text-gray-600">4.9/5</span>
+                </div>
+                <span class="text-green-500 bg-green-100 px-3 py-1 rounded-full">500K+ Players</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <section class="mb-12">
+            <div class="aspect-w-16 aspect-h-9 bg-gray-100 rounded-lg overflow-hidden shadow-2xl">
+                <div class="game-container">
+                    <iframe 
+                        id="gameFrame"
+                        src="https://cloud.onlinegames.io/games/2025/unity/monster-survivors/index-og.html"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
+                    <button class="fullscreen-btn" id="fullscreenBtn">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/>
+                        </svg>
+                        <span>Fullscreen</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <div class="grid md:grid-cols-2 gap-8 mb-12">
+            <section class="game-card bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow">
+                <h2 class="text-2xl font-bold text-[#007AFF] mb-4">Game Features</h2>
+                <ul class="space-y-3 text-gray-700">
+                    <li class="flex items-center">
+                        <span class="text-green-500 mr-2">✓</span>
+                        Multiple unique characters with special abilities
+                    </li>
+                    <li class="flex items-center">
+                        <span class="text-green-500 mr-2">✓</span>
+                        Endless survival gameplay
+                    </li>
+                    <li class="flex items-center">
+                        <span class="text-green-500 mr-2">✓</span>
+                        RPG-style character progression
+                    </li>
+                    <li class="flex items-center">
+                        <span class="text-green-500 mr-2">✓</span>
+                        Various power-ups and abilities
+                    </li>
+                    <li class="flex items-center">
+                        <span class="text-green-500 mr-2">✓</span>
+                        Instant browser play - no download needed
+                    </li>
+                </ul>
+            </section>
+
+            <section class="game-card bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow">
+                <h2 class="text-2xl font-bold text-[#007AFF] mb-4">Game Screenshots</h2>
+                <div class="grid grid-cols-2 gap-4">
+                    <img src="https://img.itch.zone/aW1nLzEwNzE0MDI2LnBuZw==/original/dm3%2B4E.png" alt="Monster Survivors Gameplay" class="rounded-lg shadow hover:opacity-90 transition-opacity cursor-pointer">
+                    <img src="https://img.itch.zone/aW1nLzEwNzE0MDI3LnBuZw==/original/IIvY%2Bw.png" alt="Monster Survivors Battle" class="rounded-lg shadow hover:opacity-90 transition-opacity cursor-pointer">
+                </div>
+            </section>
+        </div>
+
+        <section class="game-card bg-white rounded-xl shadow-lg p-8 mb-12">
+            <h2 class="text-2xl font-bold text-[#007AFF] mb-6">Game Guide & Tips</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="space-y-4">
+                    <h3 class="text-xl font-semibold text-gray-800">Basic Mechanics</h3>
+                    <ul class="space-y-2 text-gray-700">
+                        <li>• Move with WASD or arrow keys</li>
+                        <li>• Automatically attack nearby enemies</li>
+                        <li>• Collect experience gems to level up</li>
+                        <li>• Choose new abilities when leveling up</li>
+                    </ul>
+                </div>
+                <div class="space-y-4">
+                    <h3 class="text-xl font-semibold text-gray-800">Pro Tips</h3>
+                    <ul class="space-y-2 text-gray-700">
+                        <li>• Keep moving to avoid enemy attacks</li>
+                        <li>• Prioritize complementary abilities</li>
+                        <li>• Collect health pickups when damaged</li>
+                        <li>• Focus on survival in early game</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="grid md:grid-cols-3 gap-6 mb-12">
+            <div class="game-card bg-white rounded-xl shadow-lg p-6 text-center">
+                <div class="text-4xl font-bold text-[#007AFF] mb-2 float-animation">500K+</div>
+                <p class="text-gray-600">Active Players</p>
+            </div>
+            <div class="game-card bg-white rounded-xl shadow-lg p-6 text-center">
+                <div class="text-4xl font-bold text-[#34C759] mb-2 float-animation">20+</div>
+                <p class="text-gray-600">Unique Abilities</p>
+            </div>
+            <div class="game-card bg-white rounded-xl shadow-lg p-6 text-center">
+                <div class="text-4xl font-bold text-[#FF9500] mb-2 float-animation">4.9</div>
+                <p class="text-gray-600">User Rating</p>
+            </div>
+        </section>
+
+        <section class="bg-white rounded-xl shadow-lg p-8 mb-12">
+            <h2 class="text-2xl font-bold text-[#007AFF] mb-6">Player Reviews</h2>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="border-l-4 border-[#007AFF] pl-4">
+                    <p class="text-gray-700 italic">"Incredibly addictive! The progression system keeps me coming back for more. Love trying different ability combinations!"</p>
+                    <p class="mt-2 text-gray-500">- Mike R.</p>
+                    <div class="rating-star">★★★★★</div>
+                </div>
+                <div class="border-l-4 border-[#007AFF] pl-4">
+                    <p class="text-gray-700 italic">"Best survival game I've played in a browser. The graphics are smooth and the gameplay is super engaging!"</p>
+                    <p class="mt-2 text-gray-500">- Emma L.</p>
+                    <div class="rating-star">★★★★★</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 访客留言板 -->
+        <section class="game-card bg-white rounded-xl shadow-lg p-8 mb-12">
+            <h2 class="text-2xl font-bold text-[#007AFF] mb-6">访客留言板</h2>
+            
+            <!-- 留言表单 -->
+            <div class="mb-8 bg-gray-50 p-6 rounded-lg">
+                <h3 class="text-xl font-semibold text-gray-800 mb-4">留下您的评论</h3>
+                <form id="commentForm" class="space-y-4">
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div>
+                            <label for="name" class="block text-gray-700 mb-1">昵称</label>
+                            <input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                        </div>
+                        <div>
+                            <label for="email" class="block text-gray-700 mb-1">邮箱 (不会公开)</label>
+                            <input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="message" class="block text-gray-700 mb-1">留言内容</label>
+                        <textarea id="message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required></textarea>
+                    </div>
+                    <div>
+                        <label for="rating" class="block text-gray-700 mb-1">游戏评分</label>
+                        <div class="flex items-center" id="ratingStars">
+                            <span class="star cursor-pointer text-2xl" data-value="1">☆</span>
+                            <span class="star cursor-pointer text-2xl" data-value="2">☆</span>
+                            <span class="star cursor-pointer text-2xl" data-value="3">☆</span>
+                            <span class="star cursor-pointer text-2xl" data-value="4">☆</span>
+                            <span class="star cursor-pointer text-2xl" data-value="5">☆</span>
+                            <input type="hidden" id="rating" value="0">
+                        </div>
+                    </div>
+                    <button type="submit" class="px-6 py-2 bg-[#007AFF] text-white rounded-md hover:bg-blue-600 transition-colors">提交留言</button>
+                </form>
+            </div>
+            
+            <!-- 留言展示区 -->
+            <div id="comments" class="space-y-6">
+                <h3 class="text-xl font-semibold text-gray-800 mb-4">玩家评论</h3>
+                <div id="commentsList" class="space-y-4">
+                    <!-- 示例留言 -->
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h4 class="font-bold text-gray-800">游戏爱好者</h4>
+                                <div class="text-yellow-400 text-sm">★★★★★</div>
+                            </div>
+                            <span class="text-gray-500 text-sm">2025-03-20</span>
+                        </div>
+                        <p class="mt-2 text-gray-700">这个游戏太好玩了！我已经玩了好几个小时，还是停不下来。角色升级系统非常有深度，每次游戏体验都不同。强烈推荐给所有喜欢生存类游戏的玩家！</p>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h4 class="font-bold text-gray-800">新手玩家</h4>
+                                <div class="text-yellow-400 text-sm">★★★★☆</div>
+                            </div>
+                            <span class="text-gray-500 text-sm">2025-03-18</span>
+                        </div>
+                        <p class="mt-2 text-gray-700">作为一个休闲游戏玩家，我发现这个游戏非常容易上手。操作简单，但是有很多策略可以探索。唯一的缺点是后期敌人有点太多了，但整体来说非常棒！</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-white shadow-inner mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <p class="text-center text-gray-600">&copy; 2025 YiwuGame.online - Monster Survivors</p>
+            <div class="flex justify-center space-x-4 mt-4">
+                <a href="#" class="text-[#007AFF] hover:text-[#0056b3]">Privacy Policy</a>
+                <a href="#" class="text-[#007AFF] hover:text-[#0056b3]">Terms of Service</a>
+                <a href="#" class="text-[#007AFF] hover:text-[#0056b3]">Contact Us</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const gameFrame = document.getElementById('gameFrame');
+        const fullscreenBtn = document.getElementById('fullscreenBtn');
+        const gameContainer = document.querySelector('.game-container');
+
+        // 检测是否是 iOS 设备
+        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+
+        fullscreenBtn.addEventListener('click', () => {
+            if (isIOS) {
+                // iOS 设备使用替代方案
+                gameContainer.classList.toggle('ios-fullscreen');
+                document.body.style.overflow = 'hidden';
+                // 更新按钮文本
+                fullscreenBtn.querySelector('span').textContent = 
+                    gameContainer.classList.contains('ios-fullscreen') ? 'Exit' : 'Fullscreen';
+            } else {
+                // 其他设备使用标准全屏 API
+                if (!document.fullscreenElement) {
+                    if (gameContainer.requestFullscreen) {
+                        gameContainer.requestFullscreen();
+                    } else if (gameContainer.webkitRequestFullscreen) {
+                        gameContainer.webkitRequestFullscreen();
+                    } else if (gameContainer.msRequestFullscreen) {
+                        gameContainer.msRequestFullscreen();
+                    }
+                } else {
+                    if (document.exitFullscreen) {
+                        document.exitFullscreen();
+                    } else if (document.webkitExitFullscreen) {
+                        document.webkitExitFullscreen();
+                    } else if (document.msExitFullscreen) {
+                        document.msExitFullscreen();
+                    }
+                }
+            }
+        });
+
+        // 监听全屏变化事件
+        document.addEventListener('fullscreenchange', updateFullscreenButton);
+        document.addEventListener('webkitfullscreenchange', updateFullscreenButton);
+        document.addEventListener('msfullscreenchange', updateFullscreenButton);
+
+        function updateFullscreenButton() {
+            fullscreenBtn.querySelector('span').textContent = 
+                document.fullscreenElement ? 'Exit' : 'Fullscreen';
+        }
+
+        // 处理移动设备的方向变化
+        window.addEventListener('orientationchange', () => {
+            // 给一点时间让浏览器完成旋转
+            setTimeout(() => {
+                updateFullscreenButton();
+            }, 300);
+        });
+
+        // 评分星星功能
+        const stars = document.querySelectorAll('.star');
+        const ratingInput = document.getElementById('rating');
+        
+        stars.forEach(star => {
+            star.addEventListener('mouseover', function() {
+                const value = this.getAttribute('data-value');
+                highlightStars(value);
+            });
+            
+            star.addEventListener('mouseout', function() {
+                const currentRating = ratingInput.value;
+                highlightStars(currentRating);
+            });
+            
+            star.addEventListener('click', function() {
+                const value = this.getAttribute('data-value');
+                ratingInput.value = value;
+                highlightStars(value);
+            });
+        });
+        
+        function highlightStars(count) {
+            stars.forEach(star => {
+                const value = star.getAttribute('data-value');
+                if (value <= count) {
+                    star.textContent = '★';
+                    star.classList.add('text-yellow-400');
+                } else {
+                    star.textContent = '☆';
+                    star.classList.remove('text-yellow-400');
+                }
+            });
+        }
+        
+        // 留言表单提交
+        const commentForm = document.getElementById('commentForm');
+        const commentsList = document.getElementById('commentsList');
+        
+        commentForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+            const rating = document.getElementById('rating').value;
+            
+            if (name && email && message && rating > 0) {
+                // 创建新留言
+                addComment(name, rating, message);
+                
+                // 重置表单
+                commentForm.reset();
+                highlightStars(0);
+                ratingInput.value = 0;
+                
+                // 显示成功消息
+                alert('留言提交成功！感谢您的反馈。');
+            } else {
+                alert('请填写所有必填字段并选择评分。');
+            }
+        });
+        
+        function addComment(name, rating, message) {
+            // 获取当前日期
+            const now = new Date();
+            const dateStr = now.getFullYear() + '-' + 
+                           String(now.getMonth() + 1).padStart(2, '0') + '-' + 
+                           String(now.getDate()).padStart(2, '0');
+            
+            // 创建星星评分HTML
+            let starsHtml = '';
+            for (let i = 0; i < 5; i++) {
+                starsHtml += i < rating ? '★' : '☆';
+            }
+            
+            // 创建新留言HTML
+            const newComment = document.createElement('div');
+            newComment.className = 'bg-gray-50 p-4 rounded-lg animate__animated animate__fadeIn';
+            newComment.innerHTML = `
+                <div class="flex justify-between items-start">
+                    <div>
+                        <h4 class="font-bold text-gray-800">${name}</h4>
+                        <div class="text-yellow-400 text-sm">${starsHtml}</div>
+                    </div>
+                    <span class="text-gray-500 text-sm">${dateStr}</span>
+                </div>
+                <p class="mt-2 text-gray-700">${message}</p>
+            `;
+            
+            // 添加到留言列表顶部
+            commentsList.insertBefore(newComment, commentsList.firstChild);
+            
+            // 保存到本地存储
+            saveComments();
+        }
+        
+        function saveComments() {
+            // 在实际应用中，这里会将留言保存到数据库
+            // 这里我们使用localStorage作为简单示例
+            const comments = commentsList.innerHTML;
+            localStorage.setItem('monsterSurvivorsComments', comments);
+        }
+        
+        function loadComments() {
+            // 从本地存储加载留言
+            const savedComments = localStorage.getItem('monsterSurvivorsComments');
+            if (savedComments) {
+                commentsList.innerHTML = savedComments;
+            }
+        }
+        
+        // 页面加载时加载留言
+        document.addEventListener('DOMContentLoaded', function() {
+            loadComments();
+        });
+    </script>
+</body>
+</html>
