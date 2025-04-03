@@ -4,11 +4,6 @@
 
 Yiwu Game 是一个在线游戏平台，提供多种经典游戏的在线体验，包括NES、GBA和SNES平台的游戏。网站采用现代化设计，响应式布局，支持多种设备访问。
 
-- 网站地址：https://www.yiwugame.online
-- 开发语言：HTML5, CSS3, JavaScript
-- 框架：Tailwind CSS
-- 广告系统：Google AdSense
-
 ## 已完成任务
 
 - [x] 网站基础架构搭建

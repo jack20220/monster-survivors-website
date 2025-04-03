@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Battle City - Classic NES Game | Yiwu Game</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-color: #f5f5f7;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+        .game-container {
+            width: 60%;
+            height: 100%;
+            position: relative;
+            aspect-ratio: 16/10;
+            margin: 0 auto;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        #gameFrame {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        .screenshot {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .screenshot:hover {
+            transform: scale(1.03);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+    </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "VideoGame",
+  "name": "Tank",
+  "description": "alt=Battle City Screenshot 1",
+  "image": "https://www.yikm.net/storage/images/games/fc/Battle-City.jpg",
+  "url": "https://yiwugame.com/games/tank.html",
+  "gamePlatform": "NES",
+  "applicationCategory": "Game",
+  "genre": "Video Game",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD",
+    "availability": "https://schema.org/InStock"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Yiwu Game"
+  }
+}
+</script>
+</head>
+<body>
+    <header class="bg-white/95 shadow-sm backdrop-blur-lg sticky top-0 z-50">
+        <nav class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <a href="../index.html" class="text-2xl font-semibold text-gray-900">Yiwu Game</a>
+                <a href="../index.html" class="text-gray-600 hover:text-blue-500 transition-colors duration-200">Back to Home</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-6 py-12">
+        <h1 class="text-3xl font-semibold text-gray-900 mb-6">Battle City</h1>
+        
+        <!-- Game Area -->
+        <section class="mb-8">
+            <div class="game-container bg-gray-100 rounded-lg shadow-xl relative">
+                <div class="absolute top-0 left-0 w-full h-12 bg-gray-900 z-10 flex items-center justify-between px-6">
+                    <span class="text-white font-medium">Yiwu Game</span>
+                    <button id="fullscreenBtn" class="text-white hover:text-gray-200 focus:outline-none">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5v-4m0 4h-4m4 0l-5-5" />
+                        </svg>
+                    </button>
+                </div>
+                <!-- Loading Indicator -->
+                <div id="loadingIndicator" class="absolute inset-0 flex flex-col items-center justify-center bg-gray-50 z-5" style="margin-top: 48px;">
+                    <div class="w-16 h-16 border-4 border-gray-900 border-t-transparent rounded-full animate-spin mb-4"></div>
+                    <p class="text-gray-700">Loading game, please wait...</p>
+                    <p class="text-gray-500 text-sm mt-2">First load may take longer than usual</p>
+                </div>
+                <iframe id="gameFrame" onload="document.getElementById('loadingIndicator').style.display='none'" 
+                        src="https://www.retrogames.cc/embed/22221-battle-city-japan.html" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen
+                        style="margin-top: 48px; height: calc(100% - 48px);">
+                </iframe>
+            </div>
+        </section>        <!-- Game Introduction -->
+        <section class="bg-white/95 rounded-xl shadow-md p-8 mb-12">
+            <h2 class="text-xl font-semibold text-gray-900 mb-6">Game Introduction</h2>
+            <p class="text-gray-600 leading-relaxed mb-6">
+                Battle City is a classic NES game released by Namco in 1985. Players control a tank to defend their base and defeat enemy tanks. The game supports both single-player and two-player modes, and is known for its simple yet strategic gameplay, making it one of the most popular action shooting games on the NES platform.
+            </p>
+            <div class="grid md:grid-cols-2 gap-6 mb-4">
+                <img src="https://www.yikm.net/storage/images/games/fc/Battle-City.jpg" 
+                     alt="Battle City Screenshot 1" 
+                     class="screenshot">
+                <img src="https://www.yikm.net/storage/images/games/fc/Battle-City-2.jpg" 
+                     alt="Battle City Screenshot 2" 
+                     class="screenshot">
+            </div>
+        </section>
+
+        <!-- Controls & Tips -->
+        <section class="bg-white/95 rounded-xl shadow-md p-8">
+            <h2 class="text-xl font-semibold text-gray-900 mb-6">Controls & Tips</h2>
+            <div class="grid md:grid-cols-2 gap-10">
+                <div>
+                    <h3 class="font-semibold text-gray-800 mb-3">Keyboard Controls</h3>
+                    <ul class="space-y-3 text-gray-600">
+                        <li>Arrow Keys: Move tank</li>
+                        <li>Z Key: Fire bullets</li>
+                        <li>Enter: Start game</li>
+                        <li>Space: Pause game</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-gray-800 mb-3">Game Tips</h3>
+                    <ul class="space-y-3 text-gray-600">
+                        <li>Collect stars to upgrade your tank's capabilities</li>
+                        <li>Use the shovel power-up to reinforce your base's defenses</li>
+                        <li>The grenade power-up eliminates all enemies on screen</li>
+                        <li>Use walls as cover during combat</li>
+                        <li>Protecting your base is the top priority</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-white/95 border-t border-gray-200 mt-12">
+        <div class="max-w-7xl mx-auto px-6 py-8 text-center">
+            <p class="text-gray-500 text-sm">&copy; 2024 Yiwu Game. All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="../comments.js"></script>
+    <script src="../ratings.js"></script>
+    <script>
+        // Game loading optimization
+        document.addEventListener('DOMContentLoaded', function() {
+            const gameFrame = document.getElementById('gameFrame');
+            const loadingIndicator = document.getElementById('loadingIndicator');
+            const fullscreenBtn = document.getElementById('fullscreenBtn');
+            const gameContainer = document.querySelector('.game-container');
+            
+            // Show hint if game takes too long to load
+            setTimeout(function() {
+                if (loadingIndicator.style.display !== 'none') {
+                    const loadingText = loadingIndicator.querySelector('p');
+                    if (loadingText) {
+                        loadingText.innerHTML = 'Game is taking longer to load than expected...<br>You can <a href="#" onclick="reloadGame()" class="text-blue-600">click here to refresh</a> and try again';
+                    }
+                }
+            }, 30000);
+            
+            // Fullscreen functionality
+            fullscreenBtn.addEventListener('click', function() {
+                toggleFullScreen(gameContainer);
+            });
+            
+            // Keyboard shortcut - F key for fullscreen
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'f' || e.key === 'F') {
+                    toggleFullScreen(gameContainer);
+                }
+            });
+        });
+        
+        // Reload game function
+        function reloadGame() {
+            const gameFrame = document.getElementById('gameFrame');
+            const loadingIndicator = document.getElementById('loadingIndicator');
+            loadingIndicator.style.display = 'flex';
+            gameFrame.src = gameFrame.src;
+            return false;
+        }
+        
+        // Toggle fullscreen function
+        function toggleFullScreen(element) {
+            if (!document.fullscreenElement &&    // Standard method
+                !document.mozFullScreenElement && // Firefox
+                !document.webkitFullscreenElement && // Chrome, Safari, Opera
+                !document.msFullscreenElement) {  // IE/Edge
+                
+                // Enter fullscreen
+                if (element.requestFullscreen) {
+                    element.requestFullscreen();
+                } else if (element.mozRequestFullScreen) {
+                    element.mozRequestFullScreen();
+                } else if (element.webkitRequestFullscreen) {
+                    element.webkitRequestFullscreen();
+                } else if (element.msRequestFullscreen) {
+                    element.msRequestFullscreen();
+                }
+            } else {
+                // Exit fullscreen
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.mozCancelFullScreen) {
+                    document.mozCancelFullScreen();
+                } else if (document.webkitExitFullscreen) {
+                    document.webkitExitFullscreen();
+                } else if (document.msExitFullscreen) {
+                    document.msExitFullscreen();
+                }
+            }
+        }
+    </script>
+    <script src="../mobile-controls.js"></script>
+</body>
+</html>

@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advance Wars - Classic GBA Game | Yiwu Game</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-color: #f5f5f7;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+        .game-container {
+            width: 60%;
+            height: 100%;
+            position: relative;
+            aspect-ratio: 16/10;
+            margin: 0 auto;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        #gameFrame {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        .screenshot {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .screenshot:hover {
+            transform: scale(1.03);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+    </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "VideoGame",
+  "name": "Advance Wars",
+  "description": "alt=Advance Wars Screenshot 1",
+  "image": "https://www.yikm.net/storage/images/games/gba/Advance-Wars.jpg",
+  "url": "https://yiwugame.com/games/advance-wars.html",
+  "gamePlatform": "GBA",
+  "applicationCategory": "Game",
+  "genre": "Video Game",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD",
+    "availability": "https://schema.org/InStock"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Yiwu Game"
+  }
+}
+</script>
+</head>
+<body>
+    <header class="bg-white/95 shadow-sm backdrop-blur-lg sticky top-0 z-50">
+        <nav class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <a href="../index.html" class="text-2xl font-semibold text-gray-900">Yiwu Game</a>
+                <div class="flex items-center space-x-4">
+                    <a href="../search.html" class="text-gray-600 hover:text-blue-500 transition-colors duration-200">Search</a>
+                    <a href="../index.html" class="text-gray-600 hover:text-blue-500 transition-colors duration-200">Back to Home</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-6 py-12">
+        <div class="flex justify-between items-center mb-6">
+            <h1 class="text-3xl font-semibold text-gray-900">Advance Wars</h1>
+            <button id="favorite-button" class="flex items-center space-x-1 px-3 py-2 bg-gray-100 hover:bg-gray-200 rounded-md transition-colors duration-200">
+                <svg id="favorite-icon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                </svg>
+                <span id="favorite-text">Add to Favorites</span>
+            </button>
+        </div>
+        
+        <!-- Game Area -->
+        <section class="mb-12">
+            <div class="game-container bg-gray-50 relative">
+                <div class="absolute top-0 left-0 w-full h-12 bg-gray-900 z-10 flex items-center justify-between px-6">
+                    <span class="text-white font-medium">Yiwu Game</span>
+                    <button id="fullscreenBtn" class="text-white hover:text-gray-200 focus:outline-none">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5v-4m0 4h-4m4 0l-5-5" />
+                        </svg>
+                    </button>
+                </div>
+                <!-- Loading Indicator -->
+                <div id="loadingIndicator" class="absolute inset-0 flex flex-col items-center justify-center bg-gray-50 z-5" style="margin-top: 48px;">
+                    <div class="w-16 h-16 border-4 border-gray-900 border-t-transparent rounded-full animate-spin mb-4"></div>
+                    <p class="text-gray-700">Loading game, please wait...</p>
+                    <p class="text-gray-500 text-sm mt-2">First load may take longer than usual</p>
+                </div>
+                <iframe id="gameFrame" onload="document.getElementById('loadingIndicator').style.display='none'" 
+                        src="https://www.retrogames.cc/embed/28086-advance-wars-u-mode7.html" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen
+                        style="margin-top: 48px; height: calc(100% - 48px);">
+                </iframe>
+            </div>
+        </section>
+        
+        <!-- Game Introduction -->
+        <section class="bg-white/95 rounded-xl shadow-md p-8 mb-12">
+            <h2 class="text-xl font-semibold text-gray-900 mb-6">Game Introduction</h2>
+            <p class="text-gray-600 leading-relaxed mb-6">
+                Advance Wars is a turn-based tactical strategy game developed by Intelligent Systems and published by Nintendo for the Game Boy Advance in 2001. The game puts players in command of an army with the goal of defeating enemy forces using strategic positioning and tactical decision-making. Players control various military units including infantry, tanks, artillery, and air and naval units, each with their own strengths and weaknesses. The game features multiple commanding officers (COs) with unique abilities that can turn the tide of battle when used effectively. With its accessible gameplay but deep strategic elements, Advance Wars became a beloved classic in the strategy genre.
+            </p>
+            <div class="grid md:grid-cols-2 gap-6 mb-4">
+                <img src="https://www.yikm.net/storage/images/games/gba/Advance-Wars.jpg" 
+                     alt="Advance Wars Screenshot 1" 
+                     class="screenshot">
+                <img src="https://www.yikm.net/storage/images/games/gba/Advance-Wars-2.jpg" 
+                     alt="Advance Wars Screenshot 2" 
+                     class="screenshot">
+            </div>
+        </section>
+
+        <!-- Controls & Tips -->
+        <section class="bg-white/95 rounded-xl shadow-md p-8">
+            <h2 class="text-xl font-semibold text-gray-900 mb-6">Controls & Tips</h2>
+            <div class="grid md:grid-cols-2 gap-10">
+                <div>
+                    <h3 class="font-semibold text-gray-800 mb-3">Keyboard Controls</h3>
+                    <ul class="space-y-3 text-gray-600">
+                        <li>Arrow Keys: Move cursor</li>
+                        <li>Z Key: Select/Confirm</li>
+                        <li>X Key: Cancel/Back</li>
+                        <li>A Key: Menu</li>
+                        <li>S Key: Information</li>
+                        <li>Enter: Start/Pause</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-gray-800 mb-3">Game Tips</h3>
+                    <ul class="space-y-3 text-gray-600">
+                        <li>Capture cities to increase your funds each turn</li>
+                        <li>Use terrain to your advantage - forests provide defense bonuses</li>
+                        <li>Infantry units are essential for capturing properties</li>
+                        <li>Build a balanced army with different unit types</li>
+                        <li>Save your CO Power for critical moments in battle</li>
+                        <li>Pay attention to unit strengths and weaknesses</li>
+                        <li>Repair damaged units at cities or bases</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-white/95 border-t border-gray-200 mt-12">
+        <div class="max-w-7xl mx-auto px-6 py-8 text-center">
+            <p class="text-gray-500 text-sm">&copy; 2024 Yiwu Game. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../users.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Setup favorite button
+            const favoriteButton = document.getElementById('favorite-button');
+            const favoriteIcon = document.getElementById('favorite-icon');
+            const favoriteText = document.getElementById('favorite-text');
+            
+            // Game info
+            const gameInfo = {
+                id: 'advance-wars',
+                title: 'Advance Wars',
+                image: 'https://www.yikm.net/storage/images/games/gba/Advance-Wars.jpg',
+                platform: 'gba',
+                url: window.location.pathname
+            };
+            
+            // Update favorite button state
+            function updateFavoriteButton() {
+                if (userSystem.isInFavorites(gameInfo.id)) {
+                    favoriteIcon.classList.remove('text-gray-500');
+                    favoriteIcon.classList.add('text-red-500');
+                    favoriteIcon.setAttribute('fill', 'currentColor');
+                    favoriteText.textContent = 'Remove from Favorites';
+                } else {
+                    favoriteIcon.classList.add('text-gray-500');
+                    favoriteIcon.classList.remove('text-red-500');
+                    favoriteIcon.setAttribute('fill', 'none');
+                    favoriteText.textContent = 'Add to Favorites';
+                }
+            }
+            
+            // Check initial state
+            updateFavoriteButton();
+            
+            // Add click event
+            favoriteButton.addEventListener('click', function() {
+                if (!userSystem.currentUser) {
+                    // Show login modal if user is not logged in
+                    userSystem.showAuthModal('login');
+                    return;
+                }
+                
+                if (userSystem.isInFavorites(gameInfo.id)) {
+                    // Remove from favorites
+                    userSystem.removeFromFavorites(gameInfo.id);
+                } else {
+                    // Add to favorites
+                    userSystem.addToFavorites(
+                        gameInfo.id,
+                        gameInfo.title,
+                        gameInfo.image,
+                        gameInfo.platform
+                    );
+                }
+                
+                // Update button state
+                updateFavoriteButton();
+            });
+            
+            // Listen for login/logout events
+            document.addEventListener('userLoggedIn', updateFavoriteButton);
+            document.addEventListener('userLoggedOut', updateFavoriteButton);
+        });
+    </script>
+    <script src="../comments.js"></script>
+    <script src="../ratings.js"></script>
+    <script>
+        // Game loading optimization
+        document.addEventListener('DOMContentLoaded', function() {
+            const gameFrame = document.getElementById('gameFrame');
+            const loadingIndicator = document.getElementById('loadingIndicator');
+            const fullscreenBtn = document.getElementById('fullscreenBtn');
+            const gameContainer = document.querySelector('.game-container');
+            
+            // Show hint if game takes too long to load
+            setTimeout(function() {
+                if (loadingIndicator.style.display !== 'none') {
+                    const loadingText = loadingIndicator.querySelector('p');
+                    if (loadingText) {
+                        loadingText.innerHTML = 'Game is taking longer to load than expected...<br>You can <a href="#" onclick="reloadGame()" class="text-blue-600">click here to refresh</a> and try again';
+                    }
+                }
+            }, 30000);
+            
+            // Fullscreen functionality
+            fullscreenBtn.addEventListener('click', function() {
+                toggleFullScreen(gameContainer);
+            });
+            
+            // Keyboard shortcut - F key for fullscreen
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'f' || e.key === 'F') {
+                    toggleFullScreen(gameContainer);
+                }
+            });
+        });
+        
+        // Reload game function
+        function reloadGame() {
+            const gameFrame = document.getElementById('gameFrame');
+            const loadingIndicator = document.getElementById('loadingIndicator');
+            loadingIndicator.style.display = 'flex';
+            gameFrame.src = gameFrame.src;
+            return false;
+        }
+        
+        // Toggle fullscreen function
+        function toggleFullScreen(element) {
+            if (!document.fullscreenElement &&    // Standard method
+                !document.mozFullScreenElement && // Firefox
+                !document.webkitFullscreenElement && // Chrome, Safari, Opera
+                !document.msFullscreenElement) {  // IE/Edge
+                
+                // Enter fullscreen
+                if (element.requestFullscreen) {
+                    element.requestFullscreen();
+                } else if (element.mozRequestFullScreen) {
+                    element.mozRequestFullScreen();
+                } else if (element.webkitRequestFullscreen) {
+                    element.webkitRequestFullscreen();
+                } else if (element.msRequestFullscreen) {
+                    element.msRequestFullscreen();
+                }
+            } else {
+                // Exit fullscreen
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.mozCancelFullScreen) {
+                    document.mozCancelFullScreen();
+                } else if (document.webkitExitFullscreen) {
+                    document.webkitExitFullscreen();
+                } else if (document.msExitFullscreen) {
+                    document.msExitFullscreen();
+                }
+            }
+        }
+    </script>
+    <script src="../mobile-controls.js"></script>
+</body>
+</html>

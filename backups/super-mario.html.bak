@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super Mario Bros - Classic NES Game | Yiwu Game</title>
+    <meta name="description" content="Play Super Mario Bros online for free. Experience the classic NES game that defined a generation with Mario's adventure to rescue Princess Peach from Bowser.">
+    <meta name="keywords" content="Super Mario Bros, NES game, online game, retro game, classic game, Mario, Nintendo, free game">
+    <meta name="author" content="Yiwu Game">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://yiwugame.com/games/super-mario.html">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yiwugame.com/games/super-mario.html">
+    <meta property="og:title" content="Super Mario Bros - Classic NES Game | Yiwu Game">
+    <meta property="og:description" content="Play Super Mario Bros online for free. Experience the classic NES game that defined a generation with Mario's adventure to rescue Princess Peach from Bowser.">
+    <meta property="og:image" content="https://www.yikm.net/storage/images/games/fc/Super-Mario-Bros.jpg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://yiwugame.com/games/super-mario.html">
+    <meta property="twitter:title" content="Super Mario Bros - Classic NES Game | Yiwu Game">
+    <meta property="twitter:description" content="Play Super Mario Bros online for free. Experience the classic NES game that defined a generation with Mario's adventure to rescue Princess Peach from Bowser.">
+    <meta property="twitter:image" content="https://www.yikm.net/storage/images/games/fc/Super-Mario-Bros.jpg">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background: #f5f5f5 url('https://www.yikm.net/assets/images/bg.png') repeat;
+        }
+        .game-container {
+            width: 50%;
+            height: 100%;
+            position: relative;
+            aspect-ratio: 16/10;
+            margin: 0 auto;
+        }
+        #gameFrame {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 8px;
+        }
+        .screenshot {
+            transition: transform 0.3s ease;
+        }
+        .screenshot:hover {
+            transform: scale(1.05);
+        }
+    </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "VideoGame",
+  "name": "Super Mario",
+  "description": "alt=Super Mario Bros Screenshot 1",
+  "image": "https://www.yikm.net/storage/images/games/fc/Super-Mario-Bros.jpg",
+  "url": "https://yiwugame.com/games/super-mario.html",
+  "gamePlatform": "NES",
+  "applicationCategory": "Game",
+  "genre": "Video Game",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD",
+    "availability": "https://schema.org/InStock"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Yiwu Game"
+  }
+}
+</script>
+</head>
+<body>
+    <header class="bg-white/90 shadow-md backdrop-blur-sm sticky top-0 z-50">
+        <nav class="max-w-7xl mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <a href="../index.html" class="text-2xl font-semibold text-gray-900">Yiwu Game</a>
+                <a href="../index.html" class="text-gray-600 hover:text-blue-500 transition-colors duration-200">Back to Home</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 py-8">
+        <h1 class="text-3xl font-semibold text-gray-900 mb-6">Super Mario Bros</h1>
+        
+        <!-- Game Area -->
+        <section class="mb-8">
+            <div class="game-container bg-gray-100 rounded-lg shadow-xl relative">
+                <div class="absolute top-0 left-0 w-full h-10 bg-blue-600 z-10 flex items-center justify-between px-4">
+                    <span class="text-white font-medium">Yiwu Game</span>
+                    <button id="fullscreenBtn" class="text-white hover:text-gray-200 focus:outline-none">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5v-4m0 4h-4m4 0l-5-5" />
+                        </svg>
+                    </button>                </div>
+                <!-- 添加加载指示器 -->
+                <div id="loadingIndicator" class="absolute inset-0 flex flex-col items-center justify-center bg-gray-50 z-5" style="margin-top: 40px;">
+                    <div class="w-16 h-16 border-4 border-gray-900 border-t-transparent rounded-full animate-spin mb-4"></div>
+                    <p class="text-gray-700">Loading game, please wait...</p>
+                    <p class="text-gray-500 text-sm mt-2">First load may take longer than usual</p>
+                </div>                <iframe id="gameFrame" onload="document.getElementById('loadingIndicator').style.display='none'" 
+                        src="https://www.retrogames.cc/embed/16843-super-mario-bros-japan-usa.html" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen
+                        style="margin-top: 40px; height: calc(100% - 40px);">
+                </iframe>
+            </div>
+        </section>        <!-- Game Introduction -->
+        <section class="bg-white/90 rounded-lg shadow-lg p-6 mb-8">
+            <h2 class="text-xl font-semibold text-gray-900 mb-6">Game Introduction</h2>
+            <p class="text-gray-600 leading-relaxed mb-6">
+                Super Mario Bros is a platform action game released by Nintendo in 1985 for the NES. Players control Mario (or Luigi) on an adventure through the Mushroom Kingdom to rescue Princess Peach who has been kidnapped by Bowser. The game is known for its innovative level design and precise controls, pioneering the side-scrolling action game genre.
+            </p>
+            <div class="grid md:grid-cols-2 gap-4 mb-4">
+                <img src="https://www.yikm.net/storage/images/games/fc/Super-Mario-Bros.jpg" 
+                     alt="Super Mario Bros Screenshot 1" 
+                     class="screenshot rounded-lg shadow">
+                <img src="https://www.yikm.net/storage/images/games/fc/Super-Mario-Bros-2.jpg" 
+                     alt="Super Mario Bros Screenshot 2" 
+                     class="screenshot rounded-lg shadow">
+            </div>
+        </section>
+
+        <!-- Controls & Tips -->
+        <section class="bg-white/90 rounded-lg shadow-lg p-6">
+            <h2 class="text-xl font-semibold text-gray-900 mb-6">Controls & Tips</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="font-semibold text-gray-800 mb-3">Keyboard Controls</h3>
+                    <ul class="space-y-3 text-gray-600">
+                        <li>Arrow Keys: Move</li>
+                        <li>Z Key: Jump</li>
+                        <li>X Key: Run/Fire fireballs</li>
+                        <li>Enter: Start game</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-gray-800 mb-3">Game Tips</h3>
+                    <ul class="space-y-3 text-gray-600">
+                        <li>Hold X key while running to jump further</li>
+                        <li>Eat mushrooms to grow larger, eat flowers to shoot fireballs</li>
+                        <li>Hit question mark blocks to get items</li>
+                        <li>Collect 100 coins to get an extra life</li>
+                        <li>Use pipes to enter hidden areas</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-white/90 border-t mt-8">
+        <div class="max-w-7xl mx-auto px-4 py-4 text-center text-gray-600 text-sm">
+            <p>&copy; 2024 Yiwu GAME - All Rights Reserved</p>
+        </div>
+        <script src="../comments.js"></script>
+    <script src="../ratings.js"></script>
+</footer>
+    <script src="../mobile-controls.js"></script>
+</body>
+</html>
