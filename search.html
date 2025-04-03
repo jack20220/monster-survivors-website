@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Games - Yiwu GAME</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-color: #f5f5f7;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+        .game-card {
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        .game-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .game-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 1.5rem;
+        }
+        .game-thumb {
+            aspect-ratio: 1/1;
+            object-fit: cover;
+        }
+        .section-title {
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+        .search-input {
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            padding: 0.75rem 1rem;
+            width: 100%;
+            transition: all 0.2s ease;
+        }
+        .search-input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+        }
+        .filter-button {
+            transition: all 0.2s ease;
+            border-radius: 6px;
+            padding: 0.5rem 1rem;
+        }
+        .filter-button.active {
+            background-color: #3b82f6;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <header class="bg-white/95 shadow-sm backdrop-blur-lg sticky top-0 z-50">
+        <nav class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <a href="/" class="text-2xl font-semibold text-gray-900">Yiwu Game</a>
+                <div class="space-x-8">
+                    <a href="index.html#nes" class="text-gray-700 hover:text-blue-500 transition-colors duration-200">NES Games</a>
+                    <a href="index.html#gba" class="text-gray-700 hover:text-blue-500 transition-colors duration-200">GBA Games</a>
+                    <a href="index.html#snes" class="text-gray-700 hover:text-blue-500 transition-colors duration-200">SNES Games</a>
+                    <a href="community.html" class="text-gray-700 hover:text-blue-500 transition-colors duration-200">Community</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-6 py-12">
+        <h1 class="text-3xl font-semibold text-gray-900 mb-8">Search Games</h1>
+        
+        <!-- Search Section -->
+        <section class="mb-12 bg-white/95 rounded-xl shadow-md p-8">
+            <div class="mb-6">
+                <label for="searchInput" class="block text-gray-700 font-medium mb-2">Search by game title</label>
+                <input type="text" id="searchInput" class="search-input" placeholder="Enter game title..." autofocus>
+            </div>
+            
+            <div class="mb-6">
+                <h3 class="text-gray-700 font-medium mb-3">Filter by platform</h3>
+                <div class="flex flex-wrap gap-2">
+                    <button class="filter-button bg-gray-100 text-gray-700 active" data-platform="all">All Platforms</button>
+                    <button class="filter-button bg-gray-100 text-gray-700" data-platform="nes">NES</button>
+                    <button class="filter-button bg-gray-100 text-gray-700" data-platform="gba">GBA</button>
+                    <button class="filter-button bg-gray-100 text-gray-700" data-platform="snes">SNES</button>
+                </div>
+            </div>
+            
+            <div class="mb-6">
+                <h3 class="text-gray-700 font-medium mb-3">Filter by genre</h3>
+                <div class="flex flex-wrap gap-2">
+                    <button class="filter-button bg-gray-100 text-gray-700 active" data-genre="all">All Genres</button>
+                    <button class="filter-button bg-gray-100 text-gray-700" data-genre="action-adventure">Action Adventure</button>
+                    <button class="filter-button bg-gray-100 text-gray-700" data-genre="rpg">RPG</button>
+                    <button class="filter-button bg-gray-100 text-gray-700" data-genre="shooter">Shooter</button>
+                    <button class="filter-button bg-gray-100 text-gray-700" data-genre="strategy">Strategy</button>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Search Results -->
+        <section>
+            <div class="flex items-center mb-8">
+                <h2 class="text-2xl section-title text-gray-900">Search Results</h2>
+                <div class="ml-4 h-px flex-1 bg-gray-200"></div>
+            </div>
+            <p id="noResults" class="text-gray-500 text-center py-12 hidden">No games found matching your search criteria.</p>
+            <div id="searchResults" class="game-grid"></div>
+        </section>
+    </main>
+
+    <footer class="bg-white/95 border-t border-gray-200 mt-12">
+        <div class="max-w-7xl mx-auto px-6 py-8 text-center">
+            <p class="text-gray-500 text-sm">&copy; 2024 Yiwu Game. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="users.js"></script>
+    <script src="comments.js"></script>
+    <script>
+        // Game data
+        const games = [
+            {
+                title: "Monster Survivors",
+                platform: "nes",
+                genre: "action-adventure",
+                image: "https://img.itch.zone/aW1nLzEwNzE0MDI2LnBuZw==/original/dm3%2B4E.png",
+                url: "games/monster-survivors.html"
+            },
+            {
+                title: "Super Mario Bros",
+                platform: "nes",
+                genre: "action-adventure",
+                image: "https://www.yikm.net/storage/images/games/fc/Super-Mario-Bros.jpg",
+                url: "games/super-mario.html"
+            },
+            {
+                title: "Contra",
+                platform: "nes",
+                genre: "shooter",
+                image: "https://www.yikm.net/storage/images/games/fc/Contra.jpg",
+                url: "games/contra.html"
+            },
+            {
+                title: "Battle City",
+                platform: "nes",
+                genre: "shooter",
+                image: "https://www.yikm.net/storage/images/games/fc/Battle-City.jpg",
+                url: "games/tank.html"
+            },
+            {
+                title: "Pokemon Emerald",
+                platform: "gba",
+                genre: "rpg",
+                image: "https://www.yikm.net/storage/images/games/gba/Pokemon-Emerald.jpg",
+                url: "games/pokemon-emerald.html"
+            },
+            {
+                title: "Advance Wars",
+                platform: "gba",
+                genre: "strategy",
+                image: "https://www.yikm.net/storage/images/games/gba/Advance-Wars.jpg",
+                url: "games/advance-wars.html"
+            },
+            {
+                title: "Fire Emblem",
+                platform: "gba",
+                genre: "strategy-rpg",
+                image: "https://www.yikm.net/storage/images/games/gba/Fire-Emblem.jpg",
+                url: "games/fire-emblem.html"
+            },
+            {
+                title: "The Legend of Zelda: The Minish Cap",
+                platform: "gba",
+                genre: "action-adventure",
+                image: "https://www.yikm.net/storage/images/games/gba/The-Legend-of-Zelda-The-Minish-Cap.jpg",
+                url: "games/zelda-minish-cap.html"
+            },
+            {
+                title: "Chrono Trigger",
+                platform: "snes",
+                genre: "rpg",
+                image: "https://www.yikm.net/storage/images/games/sfc/Chrono-Trigger.jpg",
+                url: "games/chrono-trigger.html"
+            },
+            {
+                title: "Final Fantasy VI",
+                platform: "snes",
+                genre: "rpg",
+                image: "https://www.yikm.net/storage/images/games/sfc/Final-Fantasy-VI.jpg",
+                url: "games/final-fantasy-6.html"
+            },
+            {
+                title: "Super Mario World",
+                platform: "snes",
+                genre: "action-adventure",
+                image: "https://www.yikm.net/storage/images/games/sfc/Super-Mario-World.jpg",
+                url: "games/super-mario-world.html"
+            },
+            {
+                title: "The Legend of Zelda: A Link to the Past",
+                platform: "snes",
+                genre: "action-adventure",
+                image: "https://www.yikm.net/storage/images/games/sfc/The-Legend-of-Zelda-A-Link-to-the-Past.jpg",
+                url: "games/legend-of-zelda.html"
+            }
+        ];
+
+        // DOM elements
+        const searchInput = document.getElementById('searchInput');
+        const searchResults = document.getElementById('searchResults');
+        const noResults = document.getElementById('noResults');
+        const platformButtons = document.querySelectorAll('[data-platform]');
+        const genreButtons = document.querySelectorAll('[data-genre]');
+
+        // Current filters
+        let currentFilters = {
+            platform: 'all',
+            genre: 'all',
+            searchTerm: ''
+        };
+
+        // Initialize search results
+        displayGames(games);
+
+        // Search input event listener
+        searchInput.addEventListener('input', function() {
+            currentFilters.searchTerm = this.value.toLowerCase().trim();
+            filterGames();
+        });
+
+        // Platform filter buttons
+        platformButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Update active button
+                platformButtons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Update filter
+                currentFilters.platform = this.dataset.platform;
+                filterGames();
+            });
+        });
+
+        // Genre filter buttons
+        genreButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Update active button
+                genreButtons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Update filter
+                currentFilters.genre = this.dataset.genre;
+                filterGames();
+            });
+        });
+
+        // Filter games based on current filters
+        function filterGames() {
+            const filteredGames = games.filter(game => {
+                // Filter by search term
+                const matchesSearch = game.title.toLowerCase().includes(currentFilters.searchTerm);
+                
+                // Filter by platform
+                const matchesPlatform = currentFilters.platform === 'all' || game.platform === currentFilters.platform;
+                
+                // Filter by genre
+                const matchesGenre = currentFilters.genre === 'all' || game.genre === currentFilters.genre;
+                
+                return matchesSearch && matchesPlatform && matchesGenre;
+            });
+            
+            displayGames(filteredGames);
+        }
+
+        // Display games in the search results
+        function displayGames(gamesToDisplay) {
+            // Clear previous results
+            searchResults.innerHTML = '';
+            
+            if (gamesToDisplay.length === 0) {
+                noResults.classList.remove('hidden');
+                return;
+            }
+            
+            noResults.classList.add('hidden');
+            
+            // Create game cards
+            gamesToDisplay.forEach(game => {
+                const gameCard = document.createElement('a');
+                gameCard.href = game.url;
+                gameCard.className = 'game-card';
+                gameCard.innerHTML = `
+                    <img src="${game.image}" alt="${game.title}" class="game-thumb w-full">
+                    <div class="p-4">
+                        <h3 class="text-sm font-semibold text-gray-900 truncate">${game.title}</h3>
+                        <p class="text-xs text-gray-500 mt-1">${formatGenre(game.genre)}</p>
+                    </div>
+                `;
+                searchResults.appendChild(gameCard);
+            });
+        }
+
+        // Format genre for display
+        function formatGenre(genre) {
+            switch(genre) {
+                case 'action-adventure':
+                    return 'Action Adventure';
+                case 'strategy-rpg':
+                    return 'Strategy RPG';
+                default:
+                    return genre.charAt(0).toUpperCase() + genre.slice(1);
+            }
+        }
+    </script>
+</body>
+</html>

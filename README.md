@@ -1,51 +1,88 @@
-# Monster Survivors Game Website
+# Yiwu Game
 
-A responsive and SEO-optimized website for the Monster Survivors game, built with HTML and Tailwind CSS.
+Yiwu Game是一个免费的游戏分享平台，提供NES、GBA、SNES等经典游戏。网站采用现代化的设计风格，支持多设备访问，并针对搜索引擎进行了优化。
 
-## Features
+## 网站信息
 
-- Responsive design for both desktop and mobile
-- SEO optimized with proper meta tags and semantic HTML
-- Apple-style design system
-- Interactive UI elements with smooth animations
-- Game iframe integration
-- Detailed game guide and features
-- Player reviews and statistics
+- 网站地址：https://www.yiwugame.online
+- 开发语言：HTML5, CSS3, JavaScript
+- 框架：Tailwind CSS
+- 广告系统：Google AdSense
 
-## Tech Stack
+## 功能特点
+
+- 经典游戏库
+  - NES游戏
+  - GBA游戏
+  - SNES游戏
+- 响应式设计
+- 搜索引擎优化
+- 广告系统集成
+- 用户评论系统
+- 游戏评分系统
+
+## 技术栈
 
 - HTML5
-- Tailwind CSS
-- Animate.css for animations
-- CDN-based dependencies
+- CSS3 (Tailwind CSS)
+- JavaScript (ES6+)
+- Google AdSense API
 
-## Setup
+## 项目结构
 
-1. Clone the repository:
-```bash
-git clone https://github.com/yourusername/monster-survivors-website.git
+```
+yiwugame/
+├── components/         # 组件目录
+│   └── ads.js         # 广告组件
+├── config/            # 配置文件
+│   └── ads.config.js  # 广告配置
+├── images/            # 图片资源
+│   └── games/         # 游戏图片
+├── styles/            # 样式文件
+│   ├── main.css       # 主要样式
+│   └── ads.css        # 广告样式
+├── index.html         # 主页
+├── privacy-policy.html # 隐私政策
+├── terms.html         # 使用条款
+├── game-template.html # 游戏模板
+└── README.md          # 项目说明
 ```
 
-2. Open the project:
+## 开发指南
+
+1. 克隆项目
 ```bash
-cd monster-survivors-website
+git clone https://github.com/yourusername/yiwugame.git
 ```
 
-3. Serve the files using any HTTP server, for example:
+2. 安装依赖
 ```bash
-python3 -m http.server 8000
+npm install
 ```
 
-4. Visit `http://localhost:8000` in your browser
+3. 运行开发服务器
+```bash
+npm run dev
+```
 
-## Live Demo
+4. 构建生产版本
+```bash
+npm run build
+```
 
-Visit [https://yiwugame.online](https://yiwugame.online) to see the live website.
+## 贡献指南
 
-## License
+1. Fork 项目
+2. 创建特性分支 (`git checkout -b feature/AmazingFeature`)
+3. 提交更改 (`git commit -m 'Add some AmazingFeature'`)
+4. 推送到分支 (`git push origin feature/AmazingFeature`)
+5. 创建 Pull Request
 
-MIT License - feel free to use this template for your own projects.
+## 许可证
 
-## Author
+本项目采用 MIT 许可证 - 查看 [LICENSE](LICENSE) 文件了解详情
 
-YiwuGame Team
+## 联系方式
+
+- 邮箱：contact@yiwugame.online
+- 电话：+86 123 4567 8900
