@@ -1,8 +1,10 @@
 User-agent: *
 Allow: /
-Disallow: /auto_update.sh
-Disallow: /auto-push.sh
-Disallow: /update_all_games.sh
-Disallow: /update_mobile_controls.sh
+Allow: /games/
+Allow: /about/
+Allow: /privacy-policy.html
+Allow: /terms.html
+Disallow: /admin/
+Disallow: /private/
 
 Sitemap: https://yiwugame.com/sitemap.xml

@@ -1,99 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://yiwugame.com/</loc>
-    <lastmod>2024-05-01</lastmod>
-    <changefreq>weekly</changefreq>
+    <loc>https://www.yiwugame.online/</loc>
+    <lastmod>2024-04-03</lastmod>
+    <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://yiwugame.com/search.html</loc>
-    <lastmod>2024-05-01</lastmod>
+    <loc>https://www.yiwugame.online/games/</loc>
+    <lastmod>2024-04-03</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.yiwugame.online/about/</loc>
+    <lastmod>2024-04-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://yiwugame.com/community.html</loc>
-    <lastmod>2024-05-01</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://yiwugame.com/profile.html</loc>
-    <lastmod>2024-05-01</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://yiwugame.com/games/monster-survivors.html</loc>
-    <lastmod>2024-05-01</lastmod>
+    <loc>https://www.yiwugame.online/privacy-policy.html</loc>
+    <lastmod>2024-04-03</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://yiwugame.com/games/super-mario.html</loc>
-    <lastmod>2024-05-01</lastmod>
+    <loc>https://www.yiwugame.online/terms.html</loc>
+    <lastmod>2024-04-03</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://yiwugame.com/games/contra.html</loc>
-    <lastmod>2024-05-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://yiwugame.com/games/tank.html</loc>
-    <lastmod>2024-05-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://yiwugame.com/games/pokemon-emerald.html</loc>
-    <lastmod>2024-05-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://yiwugame.com/games/advance-wars.html</loc>
-    <lastmod>2024-05-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://yiwugame.com/games/fire-emblem.html</loc>
-    <lastmod>2024-05-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://yiwugame.com/games/zelda-minish-cap.html</loc>
-    <lastmod>2024-05-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://yiwugame.com/games/chrono-trigger.html</loc>
-    <lastmod>2024-05-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://yiwugame.com/games/final-fantasy-6.html</loc>
-    <lastmod>2024-05-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://yiwugame.com/games/super-mario-world.html</loc>
-    <lastmod>2024-05-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://yiwugame.com/games/legend-of-zelda.html</loc>
-    <lastmod>2024-05-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.5</priority>
   </url>
 </urlset>
