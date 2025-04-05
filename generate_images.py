@@ -17,23 +17,23 @@ def create_game_image(text, platform, output_path):
     # 确保输出目录存在
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
     
-    # 保存图片
-    img.save(output_path, 'JPEG', quality=90)
+    # 保存为WebP格式
+    img.save(output_path, 'WEBP', quality=90)
 
 # 创建游戏图片
 games = [
-    ('nes/super-mario.jpg', '超级马里奥', 'NES'),
-    ('nes/contra.jpg', '魂斗罗', 'NES'),
-    ('nes/tank.jpg', '坦克大战', 'NES'),
-    ('gba/pokemon-emerald.jpg', '口袋妖怪绿宝石', 'GBA'),
-    ('gba/fire-emblem.jpg', '火焰纹章', 'GBA'),
-    ('gba/advance-wars.jpg', '高级战争', 'GBA'),
-    ('gba/zelda-minish-cap.jpg', '塞尔达传说缩小帽', 'GBA'),
-    ('snes/chrono-trigger.jpg', '时空之轮', 'SNES'),
-    ('snes/final-fantasy-6.jpg', '最终幻想6', 'SNES'),
-    ('snes/legend-of-zelda.jpg', '塞尔达传说', 'SNES'),
-    ('snes/super-mario-world.jpg', '超级马里奥世界', 'SNES'),
-    ('other/monster-survivors.jpg', '怪物幸存者', 'Other')
+    ('nes/super-mario.webp', '超级马里奥', 'NES'),
+    ('nes/contra.webp', '魂斗罗', 'NES'),
+    ('nes/tank.webp', '坦克大战', 'NES'),
+    ('gba/pokemon-emerald.webp', '口袋妖怪绿宝石', 'GBA'),
+    ('gba/fire-emblem.webp', '火焰纹章', 'GBA'),
+    ('gba/advance-wars.webp', '高级战争', 'GBA'),
+    ('gba/zelda-minish-cap.webp', '塞尔达传说缩小帽', 'GBA'),
+    ('snes/chrono-trigger.webp', '时空之轮', 'SNES'),
+    ('snes/final-fantasy-6.webp', '最终幻想6', 'SNES'),
+    ('snes/legend-of-zelda.webp', '塞尔达传说', 'SNES'),
+    ('snes/super-mario-world.webp', '超级马里奥世界', 'SNES'),
+    ('other/monster-survivors.webp', '怪物幸存者', 'Other')
 ]
 
 for path, text, platform in games:
