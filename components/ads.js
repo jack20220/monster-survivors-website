@@ -11,7 +11,7 @@ class AdLoader {
     
     init() {
         // 初始化Google AdSense
-        (adsbygoogle = window.adsbygoogle || []).push({});
+        (window.adsbygoogle = window.adsbygoogle || []).push({});
         
         // 检查页面加载时间
         this.checkPageLoadTime();
@@ -88,7 +88,7 @@ class AdLoader {
         
         // 加载广告
         try {
-            (adsbygoogle = window.adsbygoogle || []).push({});
+            (window.adsbygoogle = window.adsbygoogle || []).push({});
         } catch (error) {
             console.error(`广告加载错误 (${position}):`, error);
             this.handleAdError(position);
@@ -136,7 +136,7 @@ class AdLoader {
     }
 }
 
-// 初始化广告加载器
+// 创建广告加载器实例
 const adLoader = new AdLoader();
 
 // 定期刷新广告
