@@ -1,14 +1,11 @@
 {
-  "name": "game-placeholders",
+  "name": "monster-survivors-website",
   "version": "1.0.0",
-  "description": "生成游戏占位图片",
-  "main": "generate_placeholders.js",
+  "description": "Monster Survivors Game Website",
   "scripts": {
-    "generate": "node generate_placeholders.js",
-    "build:css": "tailwindcss -i ./src/input.css -o ./dist/output.css --watch"
+    "build:css": "tailwindcss -i ./src/input.css -o ./dist/output.css"
   },
   "dependencies": {
-    "canvas": "^2.11.2",
     "tailwindcss": "^3.4.1"
   }
 } 
