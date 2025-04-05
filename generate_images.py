@@ -2,7 +2,7 @@ from PIL import Image, ImageDraw, ImageFont
 import os
 
 def create_game_image(text, platform, output_path):
-    # 创建一个400x400的正方形图片（更大的尺寸）
+    # 创建一个400x400的正方形图片
     img = Image.new('RGB', (400, 400), color='#f8f9fa')
     d = ImageDraw.Draw(img)
     
@@ -35,23 +35,23 @@ def create_game_image(text, platform, output_path):
     # 确保输出目录存在
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
     
-    # 保存为WebP格式，使用最高质量
-    img.save(output_path, 'WEBP', quality=100)
+    # 保存为PNG格式
+    img.save(output_path, 'PNG', optimize=True)
 
 # 创建游戏图片
 games = [
-    ('super-mario.webp', '超级马里奥', 'NES'),
-    ('contra.webp', '魂斗罗', 'NES'),
-    ('tank.webp', '坦克大战', 'NES'),
-    ('pokemon-emerald.webp', '口袋妖怪绿宝石', 'GBA'),
-    ('fire-emblem.webp', '火焰纹章', 'GBA'),
-    ('advance-wars.webp', '高级战争', 'GBA'),
-    ('zelda-minish-cap.webp', '塞尔达传说缩小帽', 'GBA'),
-    ('chrono-trigger.webp', '时空之轮', 'SNES'),
-    ('final-fantasy-6.webp', '最终幻想6', 'SNES'),
-    ('zelda-link-to-past.webp', '塞尔达传说', 'SNES'),
-    ('super-mario-world.webp', '超级马里奥世界', 'SNES'),
-    ('monster-survivors.webp', '怪物幸存者', 'Other')
+    ('super-mario.png', '超级马里奥', 'NES'),
+    ('contra.png', '魂斗罗', 'NES'),
+    ('tank.png', '坦克大战', 'NES'),
+    ('pokemon-emerald.png', '口袋妖怪绿宝石', 'GBA'),
+    ('fire-emblem.png', '火焰纹章', 'GBA'),
+    ('advance-wars.png', '高级战争', 'GBA'),
+    ('zelda-minish-cap.png', '塞尔达传说缩小帽', 'GBA'),
+    ('chrono-trigger.png', '时空之轮', 'SNES'),
+    ('final-fantasy-6.png', '最终幻想6', 'SNES'),
+    ('zelda-link-to-past.png', '塞尔达传说', 'SNES'),
+    ('super-mario-world.png', '超级马里奥世界', 'SNES'),
+    ('monster-survivors.png', '怪物幸存者', 'Other')
 ]
 
 for path, text, platform in games:
