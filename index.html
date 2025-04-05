@@ -79,6 +79,21 @@
         }
         .image-error {
             border: 2px solid red;
+            position: relative;
+        }
+        .image-error::after {
+            content: attr(alt);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 0, 0, 0.1);
+            padding: 5px;
+            border-radius: 4px;
+            font-size: 12px;
+            text-align: center;
+            white-space: pre-wrap;
+            max-width: 90%;
         }
     </style>
 </head>
@@ -301,14 +316,62 @@
         document.addEventListener('DOMContentLoaded', function() {
             const images = document.querySelectorAll('.game-thumb');
             images.forEach(img => {
+                // 添加加载开始时间戳
+                img.dataset.loadStart = Date.now();
+                
                 img.onerror = function() {
-                    console.error('图片加载失败:', this.src);
+                    const loadTime = Date.now() - parseInt(this.dataset.loadStart);
+                    console.error('图片加载失败:', {
+                        src: this.src,
+                        alt: this.alt,
+                        naturalWidth: this.naturalWidth,
+                        naturalHeight: this.naturalHeight,
+                        loadTime: loadTime + 'ms',
+                        error: '图片加载失败'
+                    });
+                    
                     this.classList.add('image-error');
-                    this.alt = '图片加载失败: ' + this.alt;
+                    this.style.backgroundColor = '#ffebee';
+                    this.alt = `图片加载失败\n${this.alt}\n${this.src}`;
+                    
+                    // 尝试重新加载图片
+                    if (!this.dataset.retryCount || parseInt(this.dataset.retryCount) < 3) {
+                        this.dataset.retryCount = (parseInt(this.dataset.retryCount) || 0) + 1;
+                        console.log(`尝试重新加载图片 (${this.dataset.retryCount}/3):`, this.src);
+                        const originalSrc = this.src;
+                        this.src = '';
+                        setTimeout(() => {
+                            if (this.dataset.retryCount <= 3) {
+                                this.src = originalSrc + '?retry=' + this.dataset.retryCount;
+                            }
+                        }, 1000);
+                    }
                 };
+                
                 img.onload = function() {
-                    console.log('图片加载成功:', this.src);
+                    const loadTime = Date.now() - parseInt(this.dataset.loadStart);
+                    console.log('图片加载成功:', {
+                        src: this.src,
+                        alt: this.alt,
+                        naturalWidth: this.naturalWidth,
+                        naturalHeight: this.naturalHeight,
+                        loadTime: loadTime + 'ms'
+                    });
+                    
+                    this.classList.remove('image-error');
+                    this.style.backgroundColor = '';
                 };
+            });
+            
+            // 检查图片是否已经加载
+            images.forEach(img => {
+                if (img.complete) {
+                    if (img.naturalWidth === 0) {
+                        img.onerror();
+                    } else {
+                        img.onload();
+                    }
+                }
             });
         });
     </script>
