@@ -1,3 +1,5 @@
+import { adConfig } from '../config/ads.config.js';
+
 // 广告加载器类
 class AdLoader {
     constructor() {
