@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>游戏占位图片生成器</title>
+    <style>
+        body {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 20px;
+            background: #fff;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+        .game-card {
+            width: 300px;
+            height: 200px;
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #495057;
+            font-size: 18px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        .download-btn {
+            position: absolute;
+            bottom: 10px;
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+        .game-card:hover .download-btn {
+            opacity: 1;
+        }
+        .platform-label {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #6c757d;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+        #debug {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            max-width: 300px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-card">
+        <span class="platform-label">NES</span>
+        超级马里奥
+        <button class="download-btn" onclick="downloadImage(this, 'nes/super-mario.jpg')">下载</button>
+    </div>
+    <div class="game-card">
+        <span class="platform-label">NES</span>
+        魂斗罗
+        <button class="download-btn" onclick="downloadImage(this, 'nes/contra.jpg')">下载</button>
+    </div>
+    <div class="game-card">
+        <span class="platform-label">NES</span>
+        坦克大战
+        <button class="download-btn" onclick="downloadImage(this, 'nes/tank.jpg')">下载</button>
+    </div>
+    <div class="game-card">
+        <span class="platform-label">GBA</span>
+        口袋妖怪绿宝石
+        <button class="download-btn" onclick="downloadImage(this, 'gba/pokemon-emerald.jpg')">下载</button>
+    </div>
+    <div class="game-card">
+        <span class="platform-label">GBA</span>
+        火焰纹章
+        <button class="download-btn" onclick="downloadImage(this, 'gba/fire-emblem.jpg')">下载</button>
+    </div>
+    <div class="game-card">
+        <span class="platform-label">GBA</span>
+        高级战争
+        <button class="download-btn" onclick="downloadImage(this, 'gba/advance-wars.jpg')">下载</button>
+    </div>
+    <div class="game-card">
+        <span class="platform-label">GBA</span>
+        塞尔达传说缩小帽
+        <button class="download-btn" onclick="downloadImage(this, 'gba/zelda-minish-cap.jpg')">下载</button>
+    </div>
+    <div class="game-card">
+        <span class="platform-label">SNES</span>
+        时空之轮
+        <button class="download-btn" onclick="downloadImage(this, 'snes/chrono-trigger.jpg')">下载</button>
+    </div>
+    <div class="game-card">
+        <span class="platform-label">SNES</span>
+        最终幻想6
+        <button class="download-btn" onclick="downloadImage(this, 'snes/final-fantasy-6.jpg')">下载</button>
+    </div>
+    <div class="game-card">
+        <span class="platform-label">SNES</span>
+        塞尔达传说
+        <button class="download-btn" onclick="downloadImage(this, 'snes/legend-of-zelda.jpg')">下载</button>
+    </div>
+    <div class="game-card">
+        <span class="platform-label">SNES</span>
+        超级马里奥世界
+        <button class="download-btn" onclick="downloadImage(this, 'snes/super-mario-world.jpg')">下载</button>
+    </div>
+    <div class="game-card">
+        <span class="platform-label">Other</span>
+        怪物幸存者
+        <button class="download-btn" onclick="downloadImage(this, 'other/monster-survivors.jpg')">下载</button>
+    </div>
+
+    <div id="debug"></div>
+
+    <script>
+        function showDebug(message) {
+            const debug = document.getElementById('debug');
+            debug.textContent = message;
+            debug.style.display = 'block';
+            setTimeout(() => {
+                debug.style.display = 'none';
+            }, 3000);
+        }
+
+        function downloadImage(button, path) {
+            const card = button.parentElement;
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = 300;
+            canvas.height = 200;
+            
+            // 绘制背景
+            ctx.fillStyle = '#f8f9fa';
+            ctx.fillRect(0, 0, 300, 200);
+            
+            // 绘制文字
+            ctx.fillStyle = '#495057';
+            ctx.font = 'bold 20px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            
+            const text = card.childNodes[1].textContent.trim();
+            ctx.fillText(text, 150, 100);
+            
+            // 创建下载链接
+            const link = document.createElement('a');
+            link.download = path;
+            link.href = canvas.toDataURL('image/jpeg', 0.9);
+            
+            // 使用Blob和URL.createObjectURL
+            fetch(link.href)
+                .then(res => res.blob())
+                .then(blob => {
+                    const url = URL.createObjectURL(blob);
+                    link.href = url;
+                    link.click();
+                    URL.revokeObjectURL(url);
+                });
+            
+            showDebug(`正在下载: ${path}`);
+        }
+    </script>
+</body>
+</html> 
