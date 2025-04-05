@@ -48,164 +48,136 @@ class AdLoader {
     
     init() {
         // 初始化Google AdSense
-        if (typeof adsbygoogle !== 'undefined') {
-            (adsbygoogle = window.adsbygoogle || []).push({});
-        }
+        (adsbygoogle = window.adsbygoogle || []).push({});
         
-        // 监听页面可见性变化
-        document.addEventListener('visibilitychange', () => {
-            if (document.visibilityState === 'visible') {
-                this.refreshAds();
-            }
-        });
+        // 检查页面加载时间
+        this.checkPageLoadTime();
         
         // 监听滚动事件
-        this.handleScroll = this.handleScroll.bind(this);
-        window.addEventListener('scroll', this.handleScroll);
+        window.addEventListener('scroll', () => this.handleScroll());
         
-        // 监听页面加载时间
-        this.checkPageLoadTime();
+        // 加载所有广告
+        this.loadAllAds();
     }
     
-    // 检查页面加载时间
     checkPageLoadTime() {
-        const pageLoadTime = performance.now();
-        if (pageLoadTime < adConfig.displayRules.minPageLoadTime) {
-            setTimeout(() => this.loadAllAds(), adConfig.displayRules.minPageLoadTime - pageLoadTime);
-        } else {
-            this.loadAllAds();
-        }
+        const loadTime = window.performance.timing.domContentLoadedEventEnd - window.performance.timing.navigationStart;
+        console.log(`页面加载时间: ${loadTime}ms`);
     }
     
-    // 处理滚动事件
     handleScroll() {
-        const scrollDepth = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-        if (scrollDepth >= adConfig.displayRules.minScrollDepth) {
-            this.loadAllAds();
-            window.removeEventListener('scroll', this.handleScroll);
-        }
+        // 检查是否滚动到广告位置
+        Object.keys(adConfig.adSlots).forEach(position => {
+            const element = document.getElementById(adConfig.adSlots[position]);
+            if (element && !this.adsLoaded.has(position)) {
+                const rect = element.getBoundingClientRect();
+                if (rect.top < window.innerHeight) {
+                    this.loadAd(position);
+                }
+            }
+        });
     }
     
-    // 加载所有广告
     loadAllAds() {
+        // 加载所有广告
         Object.keys(adConfig.adSlots).forEach(position => {
             this.loadAd(position);
         });
     }
     
-    // 加载广告
     loadAd(position) {
-        if (this.adsLoaded.has(position)) {
-            return;
-        }
+        if (this.adsLoaded.has(position)) return;
         
-        const adContainer = document.getElementById(`${position}-ad`);
-        if (!adContainer) {
-            return;
-        }
+        const element = document.getElementById(adConfig.adSlots[position]);
+        if (!element) return;
         
-        // 检查停留时间
-        if (this.getTimeOnPage() < adConfig.displayRules.minTimeOnPage) {
-            setTimeout(() => this.loadAd(position), adConfig.displayRules.minTimeOnPage - this.getTimeOnPage());
-            return;
-        }
+        const adSize = this.getAdSize(position);
+        const adSlot = adConfig.adSlots[position];
         
         // 创建广告容器
-        const adElement = document.createElement('ins');
-        adElement.className = 'adsbygoogle';
-        adElement.style.display = 'block';
-        adElement.dataset.adClient = adConfig.publisherId;
+        const adContainer = document.createElement('div');
+        adContainer.className = 'ad-container';
+        adContainer.style.width = adSize.width + 'px';
+        adContainer.style.height = adSize.height + 'px';
+        adContainer.style.margin = '0 auto';
         
-        // 设置广告位ID
-        const isMobile = window.innerWidth <= 768;
-        adElement.dataset.adSlot = adConfig.adSlots[position][isMobile ? 'mobile' : 'desktop'];
+        // 添加广告标签
+        const adLabel = document.createElement('div');
+        adLabel.className = 'ad-label';
+        adLabel.textContent = 'Advertisement';
+        adContainer.appendChild(adLabel);
         
-        // 设置广告尺寸
-        const size = this.getAdSize(position);
-        adElement.style.width = size.width;
-        adElement.style.height = size.height;
+        // 添加广告
+        const ad = document.createElement('ins');
+        ad.className = 'adsbygoogle';
+        ad.style.display = 'block';
+        ad.setAttribute('data-ad-client', 'ca-pub-8507638522906227');
+        ad.setAttribute('data-ad-slot', adSlot);
+        ad.setAttribute('data-ad-format', 'auto');
+        ad.setAttribute('data-full-width-responsive', 'true');
         
-        // 添加广告到容器
-        adContainer.appendChild(adElement);
+        adContainer.appendChild(ad);
+        element.appendChild(adContainer);
         
-        // 延迟加载广告
-        setTimeout(() => {
-            if (typeof adsbygoogle !== 'undefined') {
-                (adsbygoogle = window.adsbygoogle || []).push({});
-            }
-        }, adConfig.loadConfig.delay);
-        
+        // 记录已加载的广告
         this.adsLoaded.add(position);
-        this.ads[position] = adElement;
+        this.ads[position] = ad;
         
-        // 监听广告加载错误
-        this.handleAdError(position);
+        // 加载广告
+        try {
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        } catch (error) {
+            console.error(`广告加载错误 (${position}):`, error);
+            this.handleAdError(position);
+        }
     }
     
-    // 获取广告尺寸
     getAdSize(position) {
-        const isMobile = window.innerWidth <= 768;
+        const isMobile = window.innerWidth < 768;
         const size = adConfig.adSizes[position][isMobile ? 'mobile' : 'desktop'];
-        const [width, height] = size.split('x');
-        return { width: `${width}px`, height: `${height}px` };
+        const [width, height] = size.split('x').map(Number);
+        return { width, height };
     }
     
-    // 处理广告加载错误
     handleAdError(position) {
-        const adElement = this.ads[position];
-        if (!adElement) return;
+        console.error(`广告加载失败: ${position}`);
+        this.retryCount[position] = (this.retryCount[position] || 0) + 1;
         
-        const observer = new MutationObserver((mutations) => {
-            mutations.forEach((mutation) => {
-                if (mutation.type === 'attributes' && mutation.attributeName === 'style') {
-                    const style = adElement.getAttribute('style');
-                    if (style && style.includes('display: none')) {
-                        this.retryAd(position);
-                        observer.disconnect();
-                    }
+        if (this.retryCount[position] <= 3) {
+            setTimeout(() => this.retryAd(position), 5000);
+        }
+    }
+    
+    retryAd(position) {
+        const element = document.getElementById(adConfig.adSlots[position]);
+        if (element) {
+            element.innerHTML = '';
+            this.adsLoaded.delete(position);
+            this.loadAd(position);
+        }
+    }
+    
+    getTimeOnPage() {
+        return Date.now() - window.performance.timing.navigationStart;
+    }
+    
+    refreshAds() {
+        if (this.getTimeOnPage() > adConfig.refreshInterval) {
+            Object.keys(adConfig.adSlots).forEach(position => {
+                if (this.ads[position]) {
+                    this.adsLoaded.delete(position);
+                    this.loadAd(position);
                 }
             });
-        });
-        
-        observer.observe(adElement, { attributes: true });
-    }
-    
-    // 重试加载广告
-    retryAd(position) {
-        if (!this.retryCount[position]) {
-            this.retryCount[position] = 0;
         }
-        
-        if (this.retryCount[position] < adConfig.loadConfig.maxRetries) {
-            this.retryCount[position]++;
-            setTimeout(() => {
-                this.loadAd(position);
-            }, adConfig.loadConfig.retryInterval);
-        } else {
-            console.error(`Failed to load ad for position: ${position} after ${adConfig.loadConfig.maxRetries} retries`);
-        }
-    }
-    
-    // 获取页面停留时间
-    getTimeOnPage() {
-        return performance.now();
-    }
-    
-    // 刷新广告
-    refreshAds() {
-        Object.keys(this.ads).forEach(position => {
-            const adElement = this.ads[position];
-            if (adElement) {
-                adElement.remove();
-                this.adsLoaded.delete(position);
-                this.loadAd(position);
-            }
-        });
     }
 }
 
-// 创建广告加载器实例
+// 初始化广告加载器
 const adLoader = new AdLoader();
+
+// 定期刷新广告
+setInterval(() => adLoader.refreshAds(), 60000);
 
 // 导出广告加载器
 export default adLoader; 
