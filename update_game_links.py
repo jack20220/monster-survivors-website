@@ -3,18 +3,18 @@ import re
 
 # 游戏链接映射
 GAME_LINKS = {
-    'super-mario.html': 'https://www.yikm.net/play/?game=fc/super-mario-bros',
-    'contra.html': 'https://www.yikm.net/play/?game=fc/contra',
-    'tank.html': 'https://www.yikm.net/play/?game=fc/battle-city',
-    'pokemon-emerald.html': 'https://www.yikm.net/play/?game=gba/pokemon-emerald',
-    'fire-emblem.html': 'https://www.yikm.net/play/?game=gba/fire-emblem',
-    'advance-wars.html': 'https://www.yikm.net/play/?game=gba/advance-wars',
-    'zelda-minish-cap.html': 'https://www.yikm.net/play/?game=gba/zelda-minish-cap',
-    'chrono-trigger.html': 'https://www.yikm.net/play/?game=snes/chrono-trigger',
-    'final-fantasy-6.html': 'https://www.yikm.net/play/?game=snes/final-fantasy-6',
-    'legend-of-zelda.html': 'https://www.yikm.net/play/?game=snes/legend-of-zelda',
-    'super-mario-world.html': 'https://www.yikm.net/play/?game=snes/super-mario-world',
-    'monster-survivors.html': 'https://www.yikm.net/play/?game=other/monster-survivors'
+    'super-mario.html': 'fc/super-mario-bros',
+    'contra.html': 'fc/contra',
+    'tank.html': 'fc/battle-city',
+    'pokemon-emerald.html': 'gba/pokemon-emerald',
+    'fire-emblem.html': 'gba/fire-emblem',
+    'advance-wars.html': 'gba/advance-wars',
+    'zelda-minish-cap.html': 'gba/zelda-minish-cap',
+    'chrono-trigger.html': 'snes/chrono-trigger',
+    'final-fantasy-6.html': 'snes/final-fantasy-6',
+    'legend-of-zelda.html': 'snes/legend-of-zelda',
+    'super-mario-world.html': 'snes/super-mario-world',
+    'monster-survivors.html': 'other/monster-survivors'
 }
 
 def update_game_link(file_path):
@@ -26,16 +26,28 @@ def update_game_link(file_path):
     file_name = os.path.basename(file_path)
     
     # 获取新的游戏链接
-    new_link = GAME_LINKS.get(file_name)
-    if not new_link:
+    game_path = GAME_LINKS.get(file_name)
+    if not game_path:
         print(f"警告: 未找到 {file_name} 的游戏链接")
         return
     
-    # 更新iframe的src属性
+    # 更新iframe的src属性和相关JavaScript代码
     new_content = re.sub(
-        r'src="[^"]+"\s+allow="accelerometer',
-        f'src="{new_link}" allow="accelerometer',
-        content
+        r'<iframe id="gameFrame"[^>]*>.*?</iframe>',
+        f'''<iframe id="gameFrame" src="proxy.html"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+                style="margin-top: 48px; height: calc(100% - 48px);">
+        </iframe>
+        <script>
+            document.getElementById('gameFrame').onload = function() {{
+                this.contentWindow.postMessage({{
+                    gameUrl: 'https://www.yikm.net/play/?game={game_path}'
+                }}, '*');
+            }};
+        </script>''',
+        content,
+        flags=re.DOTALL
     )
     
     # 如果内容有变化，则保存
