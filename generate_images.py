@@ -2,6 +2,8 @@ from PIL import Image, ImageDraw, ImageFont
 import os
 
 def create_game_image(game_name, output_path):
+    print(f"正在生成图片: {output_path}")
+    
     # 创建400x400的图片
     img = Image.new('RGB', (400, 400), color=(240, 240, 240))
     draw = ImageDraw.Draw(img)
@@ -12,8 +14,14 @@ def create_game_image(game_name, output_path):
     # 添加游戏名称
     try:
         font = ImageFont.truetype("Arial", 36)
+        print("使用Arial字体")
     except:
-        font = ImageFont.load_default()
+        try:
+            font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 36)
+            print("使用DejaVuSans字体")
+        except:
+            font = ImageFont.load_default()
+            print("使用默认字体")
     
     # 计算文本位置使其居中
     text_bbox = draw.textbbox((0, 0), game_name, font=font)
@@ -27,10 +35,18 @@ def create_game_image(game_name, output_path):
     
     # 保存为PNG格式
     img.save(output_path, 'PNG', optimize=True, quality=95)
+    print(f"图片已保存: {output_path}")
+    
+    # 验证图片是否成功保存
+    if os.path.exists(output_path):
+        print(f"文件大小: {os.path.getsize(output_path)} 字节")
+    else:
+        print("错误：文件未成功保存")
 
 def main():
     # 确保输出目录存在
     output_dir = os.path.join('images', 'games')
+    print(f"输出目录: {output_dir}")
     os.makedirs(output_dir, exist_ok=True)
     
     # 游戏列表
@@ -54,7 +70,6 @@ def main():
         game_name = os.path.splitext(game)[0].replace('-', ' ').title()
         output_path = os.path.join(output_dir, game)
         create_game_image(game_name, output_path)
-        print(f'已生成: {output_path}')
 
 if __name__ == '__main__':
     main() 

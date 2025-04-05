@@ -77,6 +77,9 @@
                 height: 140px;
             }
         }
+        .image-error {
+            border: 2px solid red;
+        }
     </style>
 </head>
 <body>
@@ -292,5 +295,22 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        // 添加图片加载错误处理
+        document.addEventListener('DOMContentLoaded', function() {
+            const images = document.querySelectorAll('.game-thumb');
+            images.forEach(img => {
+                img.onerror = function() {
+                    console.error('图片加载失败:', this.src);
+                    this.classList.add('image-error');
+                    this.alt = '图片加载失败: ' + this.alt;
+                };
+                img.onload = function() {
+                    console.log('图片加载成功:', this.src);
+                };
+            });
+        });
+    </script>
 </body>
 </html>
