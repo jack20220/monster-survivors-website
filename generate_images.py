@@ -30,7 +30,8 @@ def create_game_image(game_name, output_path):
 
 def main():
     # 确保输出目录存在
-    os.makedirs('images/games', exist_ok=True)
+    output_dir = os.path.join('images', 'games')
+    os.makedirs(output_dir, exist_ok=True)
     
     # 游戏列表
     games = [
@@ -51,7 +52,7 @@ def main():
     # 为每个游戏生成图片
     for game in games:
         game_name = os.path.splitext(game)[0].replace('-', ' ').title()
-        output_path = os.path.join('images/games', game)
+        output_path = os.path.join(output_dir, game)
         create_game_image(game_name, output_path)
         print(f'已生成: {output_path}')
 
