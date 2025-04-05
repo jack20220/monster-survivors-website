@@ -1,5 +1,6 @@
 from PIL import Image, ImageDraw, ImageFont
 import os
+import platform
 
 def create_game_image(game_name, output_path):
     print(f"正在生成图片: {output_path}")
@@ -13,12 +14,16 @@ def create_game_image(game_name, output_path):
     
     # 添加游戏名称
     try:
-        font = ImageFont.truetype("Arial", 36)
-        print("使用Arial字体")
+        if platform.system() == 'Darwin':  # macOS
+            font = ImageFont.truetype("/System/Library/Fonts/Helvetica.ttc", 36)
+            print("使用Helvetica字体")
+        else:
+            font = ImageFont.truetype("Arial", 36)
+            print("使用Arial字体")
     except:
         try:
-            font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 36)
-            print("使用DejaVuSans字体")
+            font = ImageFont.truetype("/System/Library/Fonts/SFNS.ttf", 36)  # San Francisco
+            print("使用San Francisco字体")
         except:
             font = ImageFont.load_default()
             print("使用默认字体")
